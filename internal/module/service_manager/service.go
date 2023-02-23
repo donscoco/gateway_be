@@ -63,7 +63,9 @@ func (s *ServiceManager) HTTPAccessMode(c *gin.Context) (*dao.ServiceDetail, err
 	//host c.Request.Host
 	//path c.Request.URL.Path
 	host := c.Request.Host
-	host = host[0:strings.Index(host, ":")]
+	if strings.Index(host, ":") != -1 {
+		host = host[0:strings.Index(host, ":")]
+	}
 	path := c.Request.URL.Path
 	for _, serviceItem := range s.ServiceSlice {
 		if serviceItem.Info.LoadType != bl.LoadTypeHTTP {
