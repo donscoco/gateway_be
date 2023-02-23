@@ -1,0 +1,10 @@
+.idea
+.vscode/
+
+.run/
+bin/
+vendor/
+
+test/
+
+cmd/lab

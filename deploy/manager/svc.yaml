@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway_be          # 修改为 项目的名字
+  namespace: gateway            # 修改为项目的组
+spec:
+  selector:
+    app: gateway_be      # 找对应的 pod来 作为 endpoints
+  type:  NodePort         # ClusterIP 只能集群访问，NodePort 能让外网访问
+  ports:
+    - name: httpname          # 这组规则的名字
+      protocol: TCP
+      nodePort: 7801         # 这个是宿主机上的端口
+      port: 7801                # 这个是svc的端口
+      targetPort:  7801        # 这个指向deploy的端口，和deploy配置要一样

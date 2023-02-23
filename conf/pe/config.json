@@ -1,0 +1,77 @@
+{
+  "log":{
+    "log_path": "/data/log/gateway/",
+    "log_level": "INFO",
+    "log_mode": "day"
+  },
+  "log_req": true,
+  "base": {
+    "time_location": "Asia/Guangdong",
+    "debug_mode": "debug"
+  },
+  "server": {
+    "mysql": [{
+      "proxy_name": "default",
+      "addr": "172.17.73.60:3306",
+      "username": "ironhead",
+      "password": "${IRONHEAD_PWD}",
+      "database": "gateway",
+      "conn_max_lifetime":7200
+    }],
+    "redis": [{
+      "proxy_name": "default",
+      "addrs": ["172.17.73.60:6379"],
+      "username": "ironhead",
+      "password": "",
+      "database": 0,
+      "dial_timeout": 10,
+      "read_timeout":30,
+      "write_timeout":30,
+      "max_retries":   3
+    }]
+  },
+  "http": {
+    "addr": "0.0.0.0:8701",
+    "read_timeout": 60,
+    "write_timeout": 60,
+    "max_header_bytes" :60,
+    "debug_mode": "debug"
+  },
+  "cluster": {
+    "cluster_ip": "0.0.0.0",
+    "cluster_port": "8080",
+    "cluster_ssl_port": "8443"
+  },
+  "proxy": {
+    "http":{
+      "addr": ":8080",
+      "read_timeout": 10,
+      "write_timeout": 10,
+      "max_header_bytes": 20,
+      "debug_mode": "debug"
+    },
+    "https": {
+      "addr": ":8433",
+      "read_timeout": 10,
+      "write_timeout": 10,
+      "max_header_bytes": 20,
+      "debug_mode": "debug"
+    }
+  },
+  "session": {
+    "redis_addr": "172.17.73.60:6379",
+    "redis_pwd": ""
+  },
+  "coordinator": {
+    "zookeeper": {
+      "addrs"   :["172.17.73.60:2181","172.17.73.60:2182","172.17.73.60:2183"],
+      "Timeout": 6
+    }
+  },
+  "swagger": {
+    "title":"conn swagger API" ,
+    "desc": "This is a sample server celler server.",
+    "host": "127.0.0.1:8701",
+    "base_path": ""
+  }
+}

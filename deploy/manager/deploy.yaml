@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway_be
+  namespace: gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gateway_be
+  template:
+    metadata:
+      labels:
+        app: gateway_be
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: gateway_be
+          image: donscoco/gateway_be:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 7801
+          env:
+            - name: TEST_ENV
+              value: "test-env-val"
+          volumeMounts:
+            - name: gateway-val
+              mountPath: "/data/log"
+      volumes:
+        - name: gateway-val
+          hostPath:
+            path: /data/log
+
+
+
+
+
