@@ -39,12 +39,12 @@
   },
   "cluster": {
     "cluster_ip": "0.0.0.0",
-    "cluster_port": "8080",
+    "cluster_port": "8880",
     "cluster_ssl_port": "8443"
   },
   "proxy": {
     "http":{
-      "addr": ":8080",
+      "addr": ":8880",
       "read_timeout": 10,
       "write_timeout": 10,
       "max_header_bytes": 20,
